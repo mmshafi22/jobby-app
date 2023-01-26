@@ -162,11 +162,8 @@ class Jobs extends Component {
   }
 
   onClickSearch = () => {
-    const {searchInput} = this.state
-    if (searchInput !== '') {
-      this.setState({searchInput: ''})
-      this.getJobs()
-    }
+    this.setState({searchInput: ''})
+    this.getJobs()
   }
 
   renderJobs = () => {
@@ -271,14 +268,18 @@ class Jobs extends Component {
           <div className="profile-input-container">
             <div className="search-container-sm">
               <input
-                type="text"
+                type="search"
                 placeholder="Search"
                 className="input-sm"
                 value={searchInput}
                 onChange={this.onChangeSearchInput}
                 onClick={this.onClickSearch}
               />
-              <button type="button" className="btn-icon-search">
+              <button
+                type="button"
+                className="btn-icon-search"
+                data-testid="searchButton"
+              >
                 <BsSearch className="search-icon" />
               </button>
             </div>
@@ -294,7 +295,7 @@ class Jobs extends Component {
           <div className="jobs-details-container">
             <div className="search-container-lg">
               <input
-                type="text"
+                type="search"
                 placeholder="Search"
                 className="input-sm"
                 value={searchInput}
@@ -304,6 +305,7 @@ class Jobs extends Component {
                 type="button"
                 className="btn-icon-search"
                 onClick={this.onClickSearch}
+                data-testid="searchButton"
               >
                 <BsSearch className="search-icon" />
               </button>

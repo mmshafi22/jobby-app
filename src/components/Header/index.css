@@ -41,6 +41,9 @@
   width: 25px;
   height: 25px;
 }
+.logo-link {
+  text-decoration: none;
+}
 .text-link {
   text-decoration: none;
   font-family: Roboto;

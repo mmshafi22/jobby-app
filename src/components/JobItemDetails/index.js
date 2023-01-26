@@ -6,6 +6,7 @@ import {AiFillStar} from 'react-icons/ai'
 import {RiShareBoxFill} from 'react-icons/ri'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
+import SimilarCard from '../SimilarCard'
 import './index.css'
 
 const apiStatus = {
@@ -63,7 +64,7 @@ class JobItemDetails extends Component {
         title: obj.title,
       }
       const similarJobs = fetchedData.similar_jobs.map(eachItem => ({
-        companyLogoUrl: eachItem.companyLogoUrl,
+        companyLogoUrl: eachItem.company_logo_url,
         employmentType: eachItem.employment_type,
         id: eachItem.id,
         jobDescription: eachItem.job_description,
@@ -81,14 +82,36 @@ class JobItemDetails extends Component {
     }
   }
 
+  similarRetryJobs = () => {
+    this.getJobDetails()
+  }
+
   renderLoaderViewPage = () => (
-    <div className="detailed-page-loader">
+    <div className="detailed-page-loader" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
 
+  renderFailureViewPage = () => (
+    <div className="similar-page-failed-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+      />
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We cannot seem to find the page you are looking for.</p>
+      <button
+        type="button"
+        className="similar-btn-retry"
+        onClick={this.similarRetryJobs}
+      >
+        Retry
+      </button>
+    </div>
+  )
+
   renderSuccessPage = () => {
-    const {jobDetailsList} = this.state
+    const {jobDetailsList, similarJobsList} = this.state
     const {
       companyLogoUrl,
       companyWebsiteUrl,
@@ -134,7 +157,7 @@ class JobItemDetails extends Component {
           </div>
           <hr />
           <div className="description-heading-container">
-            <h1 className="detail-description-heading">Descrption</h1>
+            <h1 className="detail-description-heading">Description</h1>
             <a href={companyWebsiteUrl} target="_blanck" className="visit-link">
               <p>Visit</p>
               <RiShareBoxFill className="share-icon" />
@@ -144,7 +167,7 @@ class JobItemDetails extends Component {
           <h1 className="detail-description-heading">Skills</h1>
           <ul className="skill-list-container">
             {skills.map(eachSkill => (
-              <li className="skill">
+              <li className="skill" key={eachSkill.name}>
                 <img src={eachSkill.imageUrl} alt={eachSkill.name} />
                 <p>{eachSkill.name}</p>
               </li>
@@ -156,6 +179,12 @@ class JobItemDetails extends Component {
             <img src={lifeAtCompany.imageUrl} alt="life at company" />
           </div>
         </div>
+        <h1 className="detail-description-heading">Similar Jobs</h1>
+        <ul className="similar-cards-list">
+          {similarJobsList.map(eachSimilar => (
+            <SimilarCard key={eachSimilar.id} similarDetails={eachSimilar} />
+          ))}
+        </ul>
       </div>
     )
   }

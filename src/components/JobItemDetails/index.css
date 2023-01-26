@@ -18,12 +18,53 @@
   width: 100%;
   max-width: 1110px;
   height: 100vh;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
+}
+.similar-page-failed-container {
+  margin-top: 25px;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.similar-page-failed-container h1 {
+  font-family: Roboto;
+  font-size: 25px;
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.similar-page-failed-container img {
+  width: 50%;
+}
+.similar-page-failed-container p {
+  font-family: Roboto;
+  font-size: 15px;
+  color: #475569;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.similar-btn-retry {
+  background-color: #4f46e5;
+  width: 100px;
+  height: 35px;
+  border: 0;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  outline: none;
+  cursor: pointer;
 }
 .job-detailed-card {
   background-color: #272727;
   width: 100%;
   padding: 20px;
+  padding-bottom: 30px;
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -173,10 +214,22 @@ hr {
   width: 100%;
   max-width: 400px;
 }
+.similar-cards-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0px;
+  width: 100%;
+}
 @media (min-width: 768px) {
   .detail-company-logo {
     width: 70px;
     height: 70px;
+  }
+  .similar-cards-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
   .life-at-company-container {
     flex-direction: row;

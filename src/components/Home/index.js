@@ -6,10 +6,7 @@ const Home = () => (
   <>
     <Header />
     <div className="home-bg-container">
-      <h1 className="home-heading">
-        Find The Job That
-        <br /> Fit Your Life
-      </h1>
+      <h1 className="home-heading">Find The Job That Fits Your Life</h1>
       <p className="home-description">
         Millions of people are searching for jobs, salary <br />
         information, company reviews. Find the job that fit your
