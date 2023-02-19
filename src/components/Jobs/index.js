@@ -139,12 +139,17 @@ class Jobs extends Component {
   }
 
   changeEmploymentType = type => {
-    this.setState(
-      prevState => ({
-        employmentType: [...prevState.employmentType, type],
-      }),
-      this.getJobs,
-    )
+    const {employmentType} = this.state
+    const isPresent = employmentType.find(each => each === type)
+    if (isPresent !== undefined) {
+      const filtered = employmentType.filter(item => item !== isPresent)
+      this.setState({employmentType: filtered}, this.getJobs)
+    } else {
+      this.setState(
+        prev => ({employmentType: [...prev.employmentType, type]}),
+        this.getJobs,
+      )
+    }
   }
 
   changeSalaryRange = minimumPackage => {
@@ -260,7 +265,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const {searchInput} = this.state
+    const {searchInput, minimumPackage} = this.state
     return (
       <>
         <Header />
@@ -290,6 +295,7 @@ class Jobs extends Component {
               salaryRangesList={salaryRangesList}
               changeEmploymentType={this.changeEmploymentType}
               changeSalaryRange={this.changeSalaryRange}
+              minimumPackage={minimumPackage}
             />
           </div>
           <div className="jobs-details-container">

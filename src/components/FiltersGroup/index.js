@@ -31,7 +31,7 @@ const FiltersGroup = props => {
   }
 
   const renderSalaryRangeTypes = () => {
-    const {salaryRangesList} = props
+    const {salaryRangesList, minimumPackage} = props
     return (
       <ul className="filters-list-container">
         {salaryRangesList.map(eachRange => {
@@ -48,6 +48,7 @@ const FiltersGroup = props => {
                 id={salaryRangeId}
                 value={salaryRangeId}
                 name={salaryRangeId}
+                checked={minimumPackage === salaryRangeId}
               />
               <label className="label-checks" htmlFor={salaryRangeId}>
                 {label}

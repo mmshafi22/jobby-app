@@ -13,7 +13,6 @@ const SimilarCard = props => {
     rating,
     title,
   } = similarDetails
-  console.log(companyLogoUrl)
 
   return (
     <li className="similar-card">
