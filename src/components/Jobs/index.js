@@ -82,6 +82,31 @@ class Jobs extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    const newArr = []
+    const fetchCard = async (newUrl, newOptions) => {
+      const res = await fetch(newUrl, newOptions)
+      const fetched = await res.json()
+      return fetched
+    }
+    data.jobs.forEach(job => {
+      const newUrl = `https://apis.ccbp.in/jobs/${job.id}`
+      const newOptions = {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        method: 'GET',
+      }
+      const fetchedData = fetchCard(newUrl, newOptions)
+      newArr.push(fetchedData)
+    })
+
+    const giveApi = {
+      method: 'GET',
+      body: JSON.stringify(newArr),
+    }
+    const newRes = await fetch('http://localhost:3001/jobscard/', giveApi)
+    console.log(newRes.ok)
+
     if (response.ok === true) {
       const formattedData = data.jobs.map(each => ({
         id: each.id,
